@@ -17,10 +17,10 @@ public interface UserMapper {
     void update(User u);
 
     @Delete("delete from sys_user where id=#{id} ")
-    void delete(@Param("id") String id);
+    void delete(@Param("id") int id);
 
     @Select("select id,user_name from sys_user where id=#{id} ")
-    User find(@Param("id") String id);
+    User find(@Param("id") int id);
 
     //注：方法名和要UserMapper.xml中的id一致
     List<User> query(@Param("userName") String userName);

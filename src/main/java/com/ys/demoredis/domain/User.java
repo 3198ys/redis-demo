@@ -7,18 +7,21 @@ public class User implements Serializable {
     private static final long serialVersionUID = -4415438719697624729L;
 
 
-    private String id;
+    private int id;
 
     private String userName;
 
-    public String getId() {
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
-
 
     public String getUserName() {
         return userName;

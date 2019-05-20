@@ -43,32 +43,16 @@ public class redisController {
     @ResponseBody
     public String add(@RequestParam("name") String name) {
         User user = new User();
-user.setId("176");
+
         user.setUserName(name);
-        userService.insertUser(null);
+        userService.insertUser(user);
         return "success";
     }
     @GetMapping("/get")
     @ResponseBody
-    public User get(@RequestParam("id") String id)
+    public User get(@RequestParam("id") int id)
     {
-        User user = (User)redisService.get(key + id);
-
-
-        if(user==null)
-        {
-            User usersb= userMapper.find(id);
-            System.out.println("从redis从mysql中取出");
-            if(usersb!=null)
-            {
-                redisService.set(key+id,usersb);
-
-
-                return usersb;
-            }
-
-        }
-        System.out.println("从redis中取出");
+        User user = userService.getUser(id);
         return user;
     }
 
