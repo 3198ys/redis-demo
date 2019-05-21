@@ -19,7 +19,7 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    @CachePut(key="#result.id")
+    @CachePut(value = "UserInfoList",keyGenerator = "simpleKeyGenerator")
     public User insertUser(User u) {
         Assert.notNull(u,"不能为空");
         userMapper.insert(u);
@@ -39,7 +39,7 @@ public class UserService {
         userMapper.deleteAll();
     }
 
-    @Cacheable(key = "#p0")
+    @Cacheable(value = "UserInfoList",keyGenerator = "simpleKeyGenerator")
     public User getUser(int id)
     {
         User user = userMapper.find(id);

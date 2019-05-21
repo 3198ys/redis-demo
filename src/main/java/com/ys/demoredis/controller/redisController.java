@@ -41,10 +41,10 @@ public class redisController {
 
     @GetMapping("/add")
     @ResponseBody
-    public String add(@RequestParam("name") String name) {
+    public String add(@RequestParam("id") Integer id) {
         User user = new User();
-
-        user.setUserName(name);
+user.setId(id);
+        user.setUserName("ys"+id);
         userService.insertUser(user);
         return "success";
     }
