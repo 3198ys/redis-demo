@@ -17,6 +17,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import org.springframework.session.data.redis.config.annotation.web.server.EnableRedisWebSession;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -26,7 +28,8 @@ import static org.springframework.data.redis.serializer.RedisSerializationContex
 
 
 @Configuration
-@EnableCaching
+
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds= 50)
 public class RedisConfig
 {
     @Bean
