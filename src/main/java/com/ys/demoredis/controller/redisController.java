@@ -56,5 +56,12 @@ user.setId(id);
         return user;
     }
 
+    @GetMapping("/getName")
+    @ResponseBody
+    public List<User> getUser(@RequestParam("userName") String userName)
+    {
+        return userService.getUserWithName(userName);
+    }
+
 
 }

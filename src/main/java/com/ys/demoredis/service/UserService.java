@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.util.List;
+
 @Service
 @CacheConfig(cacheNames = "userInfoCache")
 @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
@@ -39,10 +41,16 @@ public class UserService {
         userMapper.deleteAll();
     }
 
-    @Cacheable(value = "UserInfoList",keyGenerator = "simpleKeyGenerator")
+    @Cacheable(key="#p0")
     public User getUser(int id)
     {
         User user = userMapper.find(id);
         return user;
+    }
+
+    @Cacheable(value = "UserInfoList",keyGenerator = "simpleKeyGenerator")
+    public List<User> getUserWithName(String userName)
+    {
+       return  userMapper.query(userName);
     }
 }

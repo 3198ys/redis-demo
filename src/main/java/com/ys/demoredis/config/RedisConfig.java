@@ -61,7 +61,9 @@ public class RedisConfig
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory connectionFactory)
     {
-        return new RedisCacheManager(RedisCacheWriter.lockingRedisCacheWriter(connectionFactory),this.getRedisCacheConfigtationWithTtl(600),this.getRedisCacheConfigurationMap());
+        return new RedisCacheManager(RedisCacheWriter.lockingRedisCacheWriter(connectionFactory),
+                this.getRedisCacheConfigtationWithTtl(600),//默认key的设置时间
+                this.getRedisCacheConfigurationMap());
 
     }
 
