@@ -25,7 +25,7 @@ import java.sql.SQLException;
 
 @Configuration
 //@MapperScan("com.xdclass.mobile.xdclassmobileredis.mapper")
-@EnableCaching
+
 public class DataSourceConfig {
     private Logger logger = LoggerFactory.getLogger(DataSourceConfig.class);
 
