@@ -13,6 +13,8 @@ public interface UserMapper {
     @Insert("insert sys_user(id,user_name) values(#{id},#{userName})")
     void insert(User u);
 
+
+
     @Update("update sys_user set user_name = #{userName} where id=#{id} ")
     void update(User u);
 

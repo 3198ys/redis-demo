@@ -11,27 +11,20 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.cache.RedisCacheWriter;
-import org.springframework.data.redis.connection.RedisConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
-import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
-import org.springframework.session.data.redis.config.annotation.web.server.EnableRedisWebSession;
-import org.springframework.session.web.http.CookieHttpSessionStrategy;
 
-import javax.servlet.http.HttpServletRequest;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.springframework.data.redis.serializer.RedisSerializationContext.*;
-
 
 @Configuration
 @EnableCaching
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 50)
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds= 50)
 public class RedisConfig
 {
     @Bean
@@ -103,7 +96,4 @@ public class RedisConfig
 
         return redisCacheConfiguration;
     }
-
-
-
 }
