@@ -7,6 +7,9 @@ import com.ys.demoredis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.Transaction;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -29,6 +32,10 @@ public class redisController {
 
     @Autowired
     private UserService userService;
+
+
+    @Autowired
+    private JedisPool jedisPool;
 
     @RequestMapping(value = "/getRedis", method = RequestMethod.GET)
     @ResponseBody
@@ -61,6 +68,20 @@ public class redisController {
     public List<User> getUser(@RequestParam("userName") String userName)
     {
         return userService.getUserWithName(userName);
+    }
+
+    @GetMapping("/testredis/{text}")
+    public void setString(@PathVariable("text") String text)
+    {
+        Jedis resource = jedisPool.getResource();
+        Transaction multi = resource.multi();
+        multi.lpush("mylist2","1");
+        multi.lpush("mylist2","2");
+
+
+        multi.lpush("mylist2","3");
+        multi.lpush("mylist2","4");
+        multi.exec();
     }
 
 
